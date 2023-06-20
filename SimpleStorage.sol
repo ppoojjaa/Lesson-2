@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 //pragma solidity >=0.8.19 <0.9.0;
 
@@ -14,6 +14,7 @@ contract SimpleStorage {
     Person[] public listOfPeople; //created an empty list of type Person
     //when you call this type in remix, you put in the index value of the item you want to retrieve
 
+    mapping(string => uint256) public nametoFavNum;
 
     function store(uint256 _favNum) public{
         myFavoriteNumber = _favNum;
@@ -24,11 +25,14 @@ contract SimpleStorage {
     }
 
     function addPerson(string memory _name, uint256 _favNum) public {
+        //add to list
         // Person memory newPerson = Person(_favNum,_name);
         // listOfPeople.push(newPerson);
         // INSTEAD 
         listOfPeople.push(Person(_favNum,_name));
-
+        
+        //add to mapping
+        nametoFavNum[_name] = _favNum;
     }
 
 }
